@@ -1,24 +1,6 @@
-# music
+# 基于vue的仿网易云音乐WebApp
 
-## Project setup
-```
-yarn install
-```
+## 开发目的
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+通过仿写网易云音乐，使用Vue的全家桶，并使用了cubeui，让自己对vue全家桶的开发更加熟悉，对于组件化思想、代码的规范、ES6的使用上能有提升。
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
