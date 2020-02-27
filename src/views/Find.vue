@@ -1,7 +1,6 @@
 <template>
   <div class="mine">
-    <cube-scroll ref="scroll" @pulling-up="onPullingUp">
-      <div class="slider">
+      <div class="slider" v-if="banner.length">
         <cube-slide ref="slide" :data="banner">
           <cube-slide-item
             v-for="(item, index) in banner"
@@ -24,52 +23,56 @@
         <span class="des">排行榜</span>
         <span class="des">电台</span>
       </div>
-      <ul class="recommend">
+      <div class="recommend">
         <div class="list_title_small">推荐歌单</div>
         <div class="list_title">
           <span>为你精挑细选</span>
           <div class="goto_playlist">查看更多</div>
         </div>
+        
         <ul>
-          <li class="item" v-for="item in recommendMusic" :key="item.id">
-            <img :src="item.coverImgUrl" class="pic" @click="gotoMusicList(item.id)">
+          <li class="item" v-for="item in playList" :key="item.id">
+            <img :src="item.picUrl" class="pic" @click="gotoMusicList(item)">
             <p class="text">{{item.name}}</p>
-            <p class="play-count">
-              <img src="../imgs/play.png" class="icon">
-              {{Math.floor(item.playCount / 10000) }}万
-            </p>
+            <div class="play-count">
+              <div class="play-count-box">
+                <img src="../imgs/play.png" class="icon">
+                {{Math.floor(item.playCount / 10000) }}万
+              </div>
+            </div>
           </li>
         </ul>
-      </ul>
-    </cube-scroll>
-    <keep-alive>
+      </div>
+    <transition name="fade">
       <router-view></router-view>
-    </keep-alive>
-    
+    </transition>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
-import { getBanners, getRecommendMusic } from "../api/mine";
+import { getBanners, getPlayList } from "../api/find";
+import { mapMutations } from "vuex";
 
 export default {
   name: "Mine",
   components: {
-    // HelloWorld
+    // PlayList
   },
   data() {
     return {
       banner: [],
-      recommendMusic: []
+      playList: []
     };
   },
   created() {
     this._getBanner();
-    this._getRecommendMusic();
+    this._getPlayList();
   },
   methods: {
+    //将此歌单对应的信息：歌单名称、封面地址等等存到store，以便歌单详情列表获取
+    ...mapMutations({
+      setMusicList: "SET_MUSIC_LIST_INFO"
+    }),
     //获取轮播图
     _getBanner() {
       getBanners({
@@ -81,31 +84,17 @@ export default {
       });
     },
     //获取歌单列表
-    _getRecommendMusic() {
-      getRecommendMusic({
-        limit: 6
-      }).then(res => {
-        console.log(res);
-        this.recommendMusic = res.data.playlists;
-      });
-    },
-    //下拉加载数据
-    onPullingUp() {
-      console.log("触发。。。");
-      const length = this.recommendMusic.length;
-      const trackNumberUpdateTime = this.recommendMusic[length]
-        .trackNumberUpdateTime;
-      getRecommendMusic({
-        limit: 6,
-        before: trackNumberUpdateTime
-      }).then(res => {
-        console.log(res);
-        this.recommendMusic = this.recommendMusic.concat(res.data.result);
+    _getPlayList() {
+      getPlayList(6).then(res => {
+        console.log("*.*", res);
+        this.playList = res.data.result;
       });
     },
     //进入歌单详情页
-    gotoMusicList(id){
-      this.$router.push({path:`/find/${id}`})
+    gotoMusicList(item) {
+      this.$router.push({ path: `/find/${item.id}` });
+      //存到store
+      this.setMusicList(item);
     }
   }
 };
@@ -113,6 +102,16 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/css/var";
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  transform: translate3d(30%, 0, 0);
+  opacity: 0;
+}
+
 .mine {
   width: 92%;
   margin: auto;
@@ -136,7 +135,6 @@ export default {
   }
   .icon-des {
     display: flex;
-    // justify-content: space-around;
     font-size: 22px;
     color: $font_color;
     margin-top: 20px;
@@ -179,12 +177,17 @@ export default {
     position: absolute;
     top: 10px;
     right: 20px;
-    height: 20px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
-    .icon {
+    height: 26px;
+    display: flex;
+    align-items: center;
+    .play-count-box {
+      font-weight: 500;
+      color: #ffffff;
+      font-size: 20px;
       height: 100%;
+      .icon {
+        height: 80%;
+      }
     }
   }
   .item {

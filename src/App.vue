@@ -4,13 +4,16 @@
     <keep-alive>
       <router-view />
     </keep-alive>
+    <Player/>
   </div>
 </template>
 <script>
 import Toptab from "@/components/topTab/tab";
+import Player from '@/components/Player'
 export default {
   components: {
-    Toptab
+    Toptab,
+    Player
   }
 };
 </script>
@@ -21,10 +24,10 @@ body {
   padding: 0;
 }
 #app {
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 100%;
+  // position: fixed;
+  // top: 0;
+  // height: 100%;
+  // width: 100%;
   overflow: hidden;
 }
 </style>

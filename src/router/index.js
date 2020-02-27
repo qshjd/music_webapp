@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-//异步加载组件
+/**路由懒加载 */
 //我的页面
 const Mine = resolve => {
   import("../views/Mine.vue").then(module => {
