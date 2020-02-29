@@ -4,6 +4,9 @@ const mutations = {
     [types.SET_MUSIC_LIST_INFO](state,info){
         state.musicListInfo = info
     },
+    [types.SET_RANK_LIST_INFO](state,info){
+        state.rankListInfo = info
+    },
     [types.CHOOSE_CURRENT_SONG](state,item){
         //显示播放器
         state.showPlayer = true

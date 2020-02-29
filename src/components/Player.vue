@@ -221,6 +221,7 @@ export default {
         overflow: hidden;
         .name,
         .singer {
+          width:60%;
           height: 50%;
           line-height: 25px;
           font-size: 26px;

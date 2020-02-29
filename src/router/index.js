@@ -28,6 +28,18 @@ const MusicList = resolve => {
     resolve(module)
   })
 }
+//排行榜
+const Rank = resolve => {
+  import("../views/Rank.vue").then(module => {
+    resolve(module)
+  })
+}
+//排行榜详情
+const RankList = resolve => {
+  import("../views/RankList.vue").then(module => {
+    resolve(module)
+  })
+}
 const routes = [{
     //默认跳转到我的
     path: "/",
@@ -49,6 +61,15 @@ const routes = [{
     path: "/search",
     name: "search",
     component: Search
+  },
+  {
+    path:"/rank",
+    name:"rank",
+    component:Rank,
+    children:[{
+      path:':id',
+      component:RankList
+    }]
   }
   // {
   //   path: "/",

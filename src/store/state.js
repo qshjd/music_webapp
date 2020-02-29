@@ -1,6 +1,8 @@
 const state = {
     //当前歌单信息
     musicListInfo:{},
+    //当前排行榜信息
+    rankListInfo:{},
     /**播放器 */
     
     //显示播放器

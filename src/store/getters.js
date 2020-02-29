@@ -1,6 +1,8 @@
 
 //当前选择歌单信息
 export const musicListInfo = state => state.musicListInfo
+//当前选择的排行榜歌曲信息
+export const rankListInfo = state => state.rankListInfo
 
 //获取当前播放器状态
 export const showPlayer = state => state.showPlayer

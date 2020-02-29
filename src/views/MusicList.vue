@@ -105,7 +105,7 @@ export default {
         this.Musics = res.data.playlist.tracks.map(item => {
           return formatPlayListSong(item)
         });
-        console.log('格式化后：',this.Musics)
+        // console.log('格式化后：',this.Musics)
       });
     },
     //滚动监视

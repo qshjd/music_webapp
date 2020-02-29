@@ -1,6 +1,6 @@
 <template>
   <div class="mine">
-    <cube-scroll ref="scroll" :data="List">
+    <!-- <cube-scroll ref="scroll" :data="List">
       <div class="about">
         <ul>
           <li v-for="item in List" :key="item.id" class="item">
@@ -8,7 +8,8 @@
           </li>
         </ul>
       </div>
-    </cube-scroll>
+    </cube-scroll> -->
+    该功能未完成
   </div>
 </template>
 
@@ -25,28 +26,7 @@ export default {
   data() {
     return {
       List: [
-        {id:1,text:"This is an about page"},
-        {id:2,text:"This is an about page"},
-        {id:3,text:"This is an about page"},
-        {id:4,text:"This is an about page"},
-        {id:5,text:"This is an about page"},
-        {id:6,text:"This is an about page"},
-        {id:7,text:"This is an about page"},
-        {id:8,text:"This is an about page"},
-        {id:9,text:"This is an about page"},
-        {id:10,text:"This is an about page"},
-        {id:11,text:"This is an about page"},
-        {id:12,text:"This is an about page"},
-        {id:13,text:"This is an about page"},
-        {id:14,text:"This is an about page"},
-        {id:15,text:"This is an about page"},
-        {id:16,text:"This is an about page"},
-        {id:17,text:"This is an about page"},
-        {id:18,text:"This is an about page"},
-        {id:19,text:"This is an about page"},
-        {id:20,text:"This is an about page"},
-        {id:21,text:"This is an about page"},
-        {id:22,text:"This is an about page"},
+        
       ]
     };
   }
@@ -59,7 +39,8 @@ export default {
   bottom: -100px;
   // overflow: hidden;
   width: 100%;
-  top:88px;
+  top:188px;
+  text-align: center;
   .item{
     height: 200px;
     border: 1px solid #000;

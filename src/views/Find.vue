@@ -1,5 +1,6 @@
 <template>
   <div class="mine">
+    <cube-scroll :data="banner">
       <div class="slider" v-if="banner.length">
         <cube-slide ref="slide" :data="banner">
           <cube-slide-item
@@ -14,7 +15,7 @@
       <div class="icons">
         <img src="../imgs/recommend.png" class="icon">
         <img src="../imgs/playlist.png" class="icon">
-        <img src="../imgs/rank.png" class="icon">
+        <img src="../imgs/rank.png" class="icon" @click="gotoRankPage">
         <img src="../imgs/radio.png" class="icon">
       </div>
       <div class="icon-des">
@@ -29,8 +30,7 @@
           <span>为你精挑细选</span>
           <div class="goto_playlist">查看更多</div>
         </div>
-        
-        <ul>
+        <ul class="item-box">
           <li class="item" v-for="item in playList" :key="item.id">
             <img :src="item.picUrl" class="pic" @click="gotoMusicList(item)">
             <p class="text">{{item.name}}</p>
@@ -43,6 +43,7 @@
           </li>
         </ul>
       </div>
+    </cube-scroll>
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -75,18 +76,14 @@ export default {
     }),
     //获取轮播图
     _getBanner() {
-      getBanners({
-        params: {
-          limit: 6
-        }
-      }).then(res => {
+      getBanners().then(res => {
         this.banner = res.data.banners;
       });
     },
     //获取歌单列表
     _getPlayList() {
-      getPlayList(6).then(res => {
-        console.log("*.*", res);
+      getPlayList(9).then(res => {
+        // console.log("*.*", res);
         this.playList = res.data.result;
       });
     },
@@ -95,6 +92,10 @@ export default {
       this.$router.push({ path: `/find/${item.id}` });
       //存到store
       this.setMusicList(item);
+    },
+    //进入排行榜
+    gotoRankPage() {
+      this.$router.push({ path: "/rank" });
     }
   }
 };
@@ -111,10 +112,13 @@ export default {
   transform: translate3d(30%, 0, 0);
   opacity: 0;
 }
-
 .mine {
   width: 92%;
-  margin: auto;
+  position: fixed;
+  top: 120px;
+  bottom: 0;
+  left: 4%;
+  // overflow: hidden;
   height: 100%;
   .slider {
     height: 260px;
@@ -144,6 +148,7 @@ export default {
     }
   }
   .recommend {
+    margin-bottom: 100px;
     .list_title_small {
       font-size: 24px;
       color: $font_gray;
@@ -172,42 +177,45 @@ export default {
         border-radius: 50px;
       }
     }
-  }
-  .play-count {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    .play-count-box {
-      font-weight: 500;
-      color: #ffffff;
-      font-size: 20px;
-      height: 100%;
-      .icon {
-        height: 80%;
+    .item-box {
+      // padding-bottom: 100px;
+      .item {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        width: 33.3%;
+        padding-right: 10px;
+        overflow: hidden;
+        .pic {
+          width: 100%;
+          height: 100%;
+          border-radius: 6px;
+        }
+        .text {
+          height: 80px;
+          line-height: 40px;
+          font-size: 22px;
+          color: $font_color;
+          overflow: hidden;
+        }
+        .play-count {
+          position: absolute;
+          top: 10px;
+          right: 20px;
+          height: 26px;
+          display: flex;
+          align-items: center;
+          .play-count-box {
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 20px;
+            height: 100%;
+            .icon {
+              height: 80%;
+            }
+          }
+        }
       }
-    }
-  }
-  .item {
-    display: inline-block;
-    position: relative;
-    box-sizing: border-box;
-    width: 33.3%;
-    padding-right: 10px;
-    overflow: hidden;
-    .pic {
-      width: 100%;
-      height: 100%;
-      border-radius: 6px;
-    }
-    .text {
-      height: 80px;
-      line-height: 40px;
-      font-size: 24px;
-      color: $font_color;
-      overflow: hidden;
     }
   }
 }
