@@ -10,3 +10,7 @@ export const SET_OPEN_STATUS = 'SET_OPEN_STATUS'
 export const CHANGE_AUDIO_URL = 'CHANGE_AUDIO_URL' 
 //设置获取歌曲url失败状态
 export const REQUEST_URL_ERROR = 'REQUEST_URL_ERROR'
+//删除历史纪录
+export const DELETE_ALL_SEARCH = 'DELETE_ALL_SEARCH'
+//更新存在vuex中的历史纪录
+export const UPDATE_SEARCH = 'UPDATE_SEARCH'

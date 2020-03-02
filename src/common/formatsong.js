@@ -24,3 +24,15 @@ export function formatPlayListSong(music){
         imgUrl:music.al.picUrl
     })
 }
+
+
+export function formatSearchSong (music) {
+    return new Song({
+      id: music.id,
+      singer: singerName(music.artists),
+      name: music.name,
+      imgUrl:music.album.artist.img1v1Url
+      
+    })
+  }
+  

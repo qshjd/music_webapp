@@ -1,6 +1,5 @@
 <template>
   <div class="mine">
-    <cube-scroll :data="banner">
       <div class="slider" v-if="banner.length">
         <cube-slide ref="slide" :data="banner">
           <cube-slide-item
@@ -14,7 +13,7 @@
       </div>
       <div class="icons">
         <img src="../imgs/recommend.png" class="icon">
-        <img src="../imgs/playlist.png" class="icon">
+        <img src="../imgs/playlist.png" class="icon" @click="gotoPlayList">
         <img src="../imgs/rank.png" class="icon" @click="gotoRankPage">
         <img src="../imgs/radio.png" class="icon">
       </div>
@@ -43,7 +42,6 @@
           </li>
         </ul>
       </div>
-    </cube-scroll>
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -96,6 +94,10 @@ export default {
     //进入排行榜
     gotoRankPage() {
       this.$router.push({ path: "/rank" });
+    },
+    //进入歌单
+    gotoPlayList(){
+      this.$router.push({path:"/playlist"})
     }
   }
 };
@@ -118,8 +120,8 @@ export default {
   top: 120px;
   bottom: 0;
   left: 4%;
-  // overflow: hidden;
-  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   .slider {
     height: 260px;
     border-radius: 10px;
@@ -178,7 +180,7 @@ export default {
       }
     }
     .item-box {
-      // padding-bottom: 100px;
+      margin-bottom: 100px;
       .item {
         display: inline-block;
         position: relative;

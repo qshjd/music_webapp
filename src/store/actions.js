@@ -1,9 +1,18 @@
 import * as types from './mutation-types'
-import {getSongUrl} from '../api/song'
+import {getSongUrl ,getSongDetail} from '../api/song'
 import {SUCCESS_CODE} from '../utils/config'
+import {formatPlayListSong } from '../common/formatsong'
 
 export const selectPlay = ({ commit } , item)=>{
-    commit(types.CHOOSE_CURRENT_SONG,item)
+    let detail
+    getSongDetail(item.id)
+    .then(res => {
+        detail = res.data.songs.map(song => {
+            return formatPlayListSong(song)
+        })
+        commit(types.CHOOSE_CURRENT_SONG, detail[0])
+    })
+    
 }
 
 export const changeAudioUrl = ({ commit } , id) => {

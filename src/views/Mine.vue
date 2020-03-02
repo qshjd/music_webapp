@@ -1,15 +1,12 @@
 <template>
   <div class="mine">
-    <!-- <cube-scroll ref="scroll" :data="List">
       <div class="about">
         <ul>
-          <li v-for="item in List" :key="item.id" class="item">
+          <li v-for="(item,index) in List" :key="index" class="item">
             <h1>{{item.text}}</h1>
           </li>
         </ul>
       </div>
-    </cube-scroll> -->
-    该功能未完成
   </div>
 </template>
 
@@ -17,7 +14,7 @@
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
 // import Test from '@/components/Test/test.vue'
-
+// import {loadSearch} from '../common/cache'
 export default {
   name: "Find",
   components: {
@@ -26,8 +23,7 @@ export default {
   data() {
     return {
       List: [
-        
-      ]
+       ]
     };
   }
 };
@@ -35,12 +31,17 @@ export default {
 
 <style lang="scss" scoped>
 .mine {
-  position: absolute;
-  bottom: -100px;
-  // overflow: hidden;
+  position: fixed;
+  bottom:0;
+  // height: 600px;
   width: 100%;
   top:188px;
   text-align: center;
+  left:0;
+  right:0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  
   .item{
     height: 200px;
     border: 1px solid #000;

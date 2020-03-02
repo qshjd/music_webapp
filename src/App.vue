@@ -29,5 +29,8 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  ::-webkit-scrollbar{
+    width: 0 !important
+  }
 }
 </style>

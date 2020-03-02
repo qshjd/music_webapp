@@ -40,6 +40,11 @@ const RankList = resolve => {
     resolve(module)
   })
 }
+const PlayList = resolve => {
+  import("../views/PlayList.vue").then( module => {
+    resolve(module)
+  })
+}
 const routes = [{
     //默认跳转到我的
     path: "/",
@@ -70,6 +75,10 @@ const routes = [{
       path:':id',
       component:RankList
     }]
+  },
+  {
+    path:"/playlist",
+    component:PlayList
   }
   // {
   //   path: "/",

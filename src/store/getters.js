@@ -12,3 +12,5 @@ export const expand = state => state.expand
 export const audioUrl = state => state.audioUrl
 
 export const requestError = state => state.requestError
+//获取缓存中的搜索历史
+export const searchHistory = state => state.searchHistory

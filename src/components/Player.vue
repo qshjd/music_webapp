@@ -221,6 +221,9 @@ export default {
         overflow: hidden;
         .name,
         .singer {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
           width:60%;
           height: 50%;
           line-height: 25px;
