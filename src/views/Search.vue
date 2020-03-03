@@ -210,14 +210,14 @@ export default {
     overflow: hidden;
   }
   .scroll-box {
-    margin-bottom: 100px;
+    // margin-bottom: 50px;
     .search-ctt {
-      width: 92%;
-      margin-top: 140px;
-      margin-left: 4%;
+      width: 90%;
+      margin-top: 70px;
+      margin-left: 5%;
       .hot-search {
         .title {
-          line-height: 80px;
+          line-height: 40px;
           font-size: $font_size_middle;
           color: $font_gray;
         }
@@ -228,25 +228,25 @@ export default {
             font-size: $font_size_big;
             color: $font_color;
             border: 1px solid $border_color_gray;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px 10px 10px 0;
+            padding: 5px;
+            border-radius: 5px;
+            margin: 5px 5px 5px 0;
           }
         }
         .history {
-          margin-top:20px;
-          height: 80px;
+          margin-top:10px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           .delete-all {
-            width: 40px;
-            height: 40px;
+            width: 20px;
+            height: 20px;
           }
         }
 
         .history-box {
-          height: 80px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -255,23 +255,23 @@ export default {
             color:$font_color;
           }
           .delete-item{
-            width: 40px;
-            height: 40px;
+            width: 20px;
+            height: 20px;
           }
         }
       }
     }
     .search-result {
       width: 100%;
-      margin-top: 100px;
+      margin-top: 50px;
       .item-result {
-        height: 120px;
+        height: 60px;
         border-bottom: 1px solid $border_color_gray;
-        padding-left: 4%;
+        padding-left: 5%;
 
         .name {
           height: 50%;
-          line-height: 80px;
+          line-height: 40px;
           width: 80%;
           font-size: $font_size_big;
           color: $font_color;
@@ -281,7 +281,7 @@ export default {
         }
         .singer {
           height: 50%;
-          line-height: 40px;
+          line-height: 20px;
           width: 80%;
           font-size: $font_size_small;
           color: $font_gray;
@@ -294,7 +294,7 @@ export default {
         font-size: $font_size_middle;
         color: $font_color;
         text-align: center;
-        line-height: 80px;
+        line-height: 40px;
         font-weight: 600;
       }
     }

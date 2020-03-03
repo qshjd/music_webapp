@@ -1,7 +1,7 @@
 <template>
     <div class="rank-list">
-        <Back @back="back" :headerTitle="rankListInfo.name" :bgcolor="color" />
-        <cube-scroll :data="Musics">
+        <Back @back="back" :headerTitle="rankListInfo.name" :bgcolor="color" ref="header" />
+        <cube-scroll :data="Musics"  @scroll="onScrollHandle" :listen-scroll="listenScroll"  >
             <Cover/>
             <div class="song-scroll-list">
                 <div class="sequence-play" v-show="Musics.length" ref="sequence">
@@ -28,7 +28,10 @@ export default {
     return {
       title: "歌曲",
       color: "",
-      playIcon2: require("../imgs/play2.png")
+      playIcon2: require("../imgs/play2.png"),
+      listenScroll:true,
+      pullDownY: 0, //当前窗口位置
+      imageHeight: 0, //封面大小
     };
   },
   components: {
@@ -53,6 +56,16 @@ export default {
       this.selectPlay(item);
       this.changeAudioUrl(item.id)
     },
+    //滚动监视
+    onScrollHandle(pos) {
+      this.pullDownY = pos.y;
+      if (-this.pullDownY > 240) {
+        console.log('ok')
+        this.$refs.header.changeRed()
+      } else {
+        this.$refs.header.changeWhite()
+      }
+    }
   }
 };
 </script>
@@ -71,13 +84,13 @@ export default {
   .song-scroll-list {
     position: relative;
     width: 100%;
-    top: -20px;
+    top: -40px;
     background: $bg_color;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     .sequence-play {
-      height: 80px;
-      z-index: 1000;
+      height: 40px;
+      // z-index: 1000;
       display: flex;
       align-items: center;
       border-bottom: 1px solid rgb(228, 228, 228);
@@ -86,11 +99,11 @@ export default {
         padding: 0 20px;
       }
       .text {
-        font-size: 32px;
+        font-size: $font_size_big;
         color: $font_color;
       }
       .count {
-        font-size: 28px;
+        font-size: $font_size_big;
         color: $font_gray;
       }
     }

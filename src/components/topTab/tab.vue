@@ -1,8 +1,8 @@
 <template>
   <div class="top-tab">
-    <div class="tab-item">
-      <img src="../../imgs/open.png" class="icon" />
-    </div>
+    <router-link tag="div" class="tab-item" :to="{ path: '/user' }">
+      <img src="../../imgs/open.png" class="icon">
+    </router-link>
     <router-link tag="div" class="tab-item word" to="/mine">
       <span>我的</span>
     </router-link>
@@ -10,7 +10,7 @@
       <span>发现</span>
     </router-link>
     <router-link tag="div" class="tab-item" :to="{ path: '/search' }">
-      <img src="../../imgs/search.png" class="icon2" />
+      <img src="../../imgs/search.png" class="icon2">
     </router-link>
   </div>
 </template>
@@ -31,19 +31,19 @@ export default {
 <style scoped lang="scss">
 .top-tab {
   width: 100%;
-  height: 100px;
+  height: 50px;
   z-index: -1;
   display: flex;
-  font-size: 32px;
+  font-size: 16px;
   align-items: center;
   .tab-item {
     flex: 1;
     text-align: center;
     .icon,
     .icon2 {
-      width: 40px;
-      height: 40px;
-      padding: 20px;
+      width: 20px;
+      height: 20px;
+      padding: 10px;
     }
   }
 
@@ -51,7 +51,7 @@ export default {
     color: #8a8a8a;
     &.router-link-exact-active {
       color: #2e3131;
-      font-size: 36px;
+      font-size: 18px;
       font-weight: 600;
     }
   }

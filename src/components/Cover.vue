@@ -25,7 +25,7 @@ export default {
 <style lang='scss' scoped>
 .cover{
     width: 100%;
-    height:700px;
+    height:340px;
     background-repeat:no-repeat;
     background-size: 100% 100%;
 }

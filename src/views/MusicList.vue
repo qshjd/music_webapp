@@ -61,7 +61,7 @@ export default {
     Loading
   },
   created() {
-    console.log("......", this.Musics.length);
+    // console.log("......", this.Musics.length);
     this._getMusics(this.musicListInfo.id);
     this.listenScroll = true;
   },
@@ -111,9 +111,7 @@ export default {
     //滚动监视
     onScrollHandle(pos) {
       this.pullDownY = pos.y;
-      // console.log(pos.y, this.imageHeight);
       if (-this.pullDownY > this.imageHeight - 60) {
-        // console.log("ok");
         this.$refs.header.style.background = "rgb(212, 68, 57)";
         this.headerTitle = this.musicListInfo.name;
       } else {
@@ -123,9 +121,7 @@ export default {
     },
     //选择歌曲
     selectItem(index, item) {
-      // console.log("---", index, item);
       this.selectPlay(item);
-      console.log('......')
       this.changeAudioUrl(item.id)
     },
     ...mapActions(["selectPlay","changeAudioUrl"])
@@ -135,6 +131,7 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/css/var.scss";
+@import "../assets/css/mixin.scss";
 // .fade-enter-active,
 // .fade-leave-active {
 //   transition: all 0.3s;
@@ -158,19 +155,19 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    height: 50px;
     z-index: 100;
     display: flex;
     align-items: center;
     .back-icon {
       height: 40%;
-      padding: 0 30px;
+      padding: 0 15px;
     }
     .title {
-      font-size: 30px;
+      font-size: $font_size_big;
       color: #ffffff;
       font-weight: 550;
-      overflow: hidden;
+      @include font-hidden()
     }
   }
   .list {
@@ -190,20 +187,21 @@ export default {
       background-position: 0 30%;
       .text {
         position: absolute;
-        left: 20px;
-        bottom: 40px;
+        left: 10px;
+        bottom: 20px;
         .cover-title {
-          font-size: 34px;
+          font-size: $font_size_big;
           color: #ffffff;
           font-weight: 600;
           overflow: hidden;
+          @include font-hidden()
         }
         .play-count {
-          height: 20px;
+          height: 10px;
           display: flex;
           color: #ffffff;
-          font-size: 20px;
-          margin-top: 20px;
+          font-size: $font_size_small;
+          margin-top: 10px;
           font-weight: 600;
           .icon {
             padding-right: 10px;
@@ -216,13 +214,12 @@ export default {
     .song-scroll-list {
       position: relative;
       width: 100%;
-      top: -20px;
+      top: -10px;
       background: $bg_color;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
       .sequence-play {
-        height: 80px;
-        z-index: 1000;
+        height: 40px;
         display: flex;
         align-items: center;
         border-bottom: 1px solid rgb(228, 228, 228);
@@ -231,11 +228,11 @@ export default {
           padding: 0 20px;
         }
         .text {
-          font-size: 32px;
+          font-size: $font_size_big;
           color: $font_color;
         }
         .count {
-          font-size: 28px;
+          font-size: $font_size_big;
           color: $font_gray;
         }
       }
@@ -244,7 +241,7 @@ export default {
   .loading {
     position: absolute;
     width: 100%;
-    top: 800px;
+    top: 400px;
   }
 }
 </style>

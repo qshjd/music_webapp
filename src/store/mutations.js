@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import { loadSearch } from '../common/cache';
+import { loadSearch, loadLove ,loadCurrent} from '../common/cache';
 
 const mutations = {
     [types.SET_MUSIC_LIST_INFO](state,info){
@@ -13,7 +13,6 @@ const mutations = {
         state.showPlayer = true
         //将选择歌曲的信息存进当前歌曲
         state.currentMusic = item
-        console.log('mut',item)
     },
     [types.SET_OPEN_STATUS](state,status){
         state.expand = status
@@ -30,6 +29,12 @@ const mutations = {
     [types.UPDATE_SEARCH](state){
         state.searchHistory = loadSearch()
         console.log('xxx')
+    },
+    [types.UPDATE_LOVE](state){
+        state.love = loadLove()
+    },
+    [types.UPDATE_CURRENT](state){
+        state.current = loadCurrent()
     }
 }
 

@@ -14,7 +14,7 @@
             </ul>
           </li>
         </ul>
-        <Loading :topHeight="loadingPosition" v-show="showLoading"/>
+        <!-- <Loading :topHeight="loadingPosition" v-show="showLoading" ref="loading"/> -->
       </cube-scroll>
       <transition name="fade">
         <router-view></router-view>
@@ -26,7 +26,7 @@
 <script>
 import { getRank } from "../api/rank";
 import { SUCCESS_CODE } from "../utils/config";
-import Loading from "@/components/Loading.vue";
+// import Loading from "@/components/Loading.vue";
 import Back from "@/components/Back.vue";
 import { mapMutations } from "vuex";
 const IDXS = [0, 1, 2, 3, 4, 22, 23];
@@ -37,11 +37,11 @@ export default {
       title: "排行榜",
       ranks: [],
       loadingPosition: "top:30%",
-      showLoading: true
+      // showLoading: true
     };
   },
   components: {
-    Loading,
+    // Loading,
     Back
   },
   created() {
@@ -57,9 +57,9 @@ export default {
             list.topthree = res.data.playlist.tracks.slice(0, 3);
             this.ranks.push(list);
           }
-          if (this.ranks.length === 7) {
-            this.showLoading = false;
-          }
+          // if (this.ranks.length === 7) {
+          //   this.showLoading = false;
+          // }
         });
       });
     },
@@ -97,31 +97,31 @@ export default {
   right: 0;
   overflow: hidden;
   .ran-box {
-    margin-top: 100px;
+    margin-top: 60px;
     // overflow: hidden;
     .rank-list {
-      padding: 20px;
+      padding: 10px;
       display: flex;
       align-items: center;
       .cover {
-        width: 240px;
-        height: 240px;
-        border-radius: 10px;
+        width: 120px;
+        height: 120px;
+        border-radius: 5px;
         overflow: hidden;
       }
       .songs {
         width: 50%;
-        height: 210px;
+        height: 100px;
 
         .song-item {
-          padding-left: 40px;
-          line-height: 70px;
+          padding-left: 20px;
+          line-height: 35px;
           width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          font-size: 28px;
-          height: 70px;
+          font-size: $font_size_middle;
+          height: 35px;
           color: $font_color;
         }
       }

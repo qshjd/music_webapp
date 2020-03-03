@@ -1,47 +1,36 @@
 <template>
   <div class="mine">
-      <div class="slider" v-if="banner.length">
-        <cube-slide ref="slide" :data="banner">
-          <cube-slide-item
-            v-for="(item, index) in banner"
-            :key="index"
-            @click.native="clickHandler(item, index)"
-          >
-            <img :src="item.imageUrl" class="banner-img">
-          </cube-slide-item>
-        </cube-slide>
+    <div class="slider" v-if="banner.length">
+      <cube-slide ref="slide" :data="banner">
+        <cube-slide-item
+          v-for="(item, index) in banner"
+          :key="index"
+          @click.native="clickHandler(item, index)"
+        >
+          <img :src="item.imageUrl" class="banner-img">
+        </cube-slide-item>
+      </cube-slide>
+    </div>
+    <div class="icons">
+      <img src="../imgs/recommend.png" class="icon" @click="gotoSuggest">
+      <img src="../imgs/playlist.png" class="icon" @click="gotoPlayList">
+      <img src="../imgs/rank.png" class="icon" @click="gotoRankPage">
+      <img src="../imgs/radio.png" class="icon" @click="gotoSuggest">
+    </div>
+    <div class="icon-des">
+      <span class="des">每日推荐</span>
+      <span class="des">歌单</span>
+      <span class="des">排行榜</span>
+      <span class="des">电台</span>
+    </div>
+    <div class="recommend">
+      <div class="list_title_small">推荐歌单</div>
+      <div class="list_title">
+        <span>为你精挑细选</span>
+        <div class="goto_playlist" @click="gotoPlayList">查看更多</div>
       </div>
-      <div class="icons">
-        <img src="../imgs/recommend.png" class="icon">
-        <img src="../imgs/playlist.png" class="icon" @click="gotoPlayList">
-        <img src="../imgs/rank.png" class="icon" @click="gotoRankPage">
-        <img src="../imgs/radio.png" class="icon">
-      </div>
-      <div class="icon-des">
-        <span class="des">每日推荐</span>
-        <span class="des">歌单</span>
-        <span class="des">排行榜</span>
-        <span class="des">电台</span>
-      </div>
-      <div class="recommend">
-        <div class="list_title_small">推荐歌单</div>
-        <div class="list_title">
-          <span>为你精挑细选</span>
-          <div class="goto_playlist">查看更多</div>
-        </div>
-        <ul class="item-box">
-          <li class="item" v-for="item in playList" :key="item.id">
-            <img :src="item.picUrl" class="pic" @click="gotoMusicList(item)">
-            <p class="text">{{item.name}}</p>
-            <div class="play-count">
-              <div class="play-count-box">
-                <img src="../imgs/play.png" class="icon">
-                {{Math.floor(item.playCount / 10000) }}万
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <List :playList="playList" @gotoMusicList="gotoMusicList"/>
+    </div>
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -51,11 +40,12 @@
 <script>
 import { getBanners, getPlayList } from "../api/find";
 import { mapMutations } from "vuex";
+import List from "@/components/List.vue";
 
 export default {
   name: "Mine",
   components: {
-    // PlayList
+    List
   },
   data() {
     return {
@@ -91,13 +81,21 @@ export default {
       //存到store
       this.setMusicList(item);
     },
+    //进入每日推荐
+    gotoSuggest() {
+      this.$createToast({
+        type: "warn",
+        time: 1000,
+        txt: "开发中"
+      }).show();
+    },
     //进入排行榜
     gotoRankPage() {
       this.$router.push({ path: "/rank" });
     },
     //进入歌单
-    gotoPlayList(){
-      this.$router.push({path:"/playlist"})
+    gotoPlayList() {
+      this.$router.push({ path: "/playlist" });
     }
   }
 };
@@ -105,6 +103,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/css/var";
+@import "../assets/css/mixin.scss";
+
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.3s;
@@ -117,23 +117,23 @@ export default {
 .mine {
   width: 92%;
   position: fixed;
-  top: 120px;
+  top: 60px;
   bottom: 0;
   left: 4%;
   overflow-x: hidden;
   overflow-y: auto;
   .slider {
-    height: 260px;
-    border-radius: 10px;
+    height: 130px;
+    border-radius: 5px;
     overflow: hidden;
     .banner-img {
       height: 100%;
     }
   }
   .icons {
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
-    height: 85px;
+    height: 40px;
     justify-content: space-around;
     .icon {
       height: 100%;
@@ -141,82 +141,42 @@ export default {
   }
   .icon-des {
     display: flex;
-    font-size: 22px;
+    font-size: 11px;
     color: $font_color;
-    margin-top: 20px;
+    margin-top: 10px;
     .des {
       text-align: center;
       flex: 1;
     }
   }
   .recommend {
-    margin-bottom: 100px;
+    margin-top: 20px;
+    margin-bottom: 50px;
     .list_title_small {
-      font-size: 24px;
+      font-size: $font_size_small;
       color: $font_gray;
-      height: 60px;
-      line-height: 140px;
+      height: 30px;
+      line-height: 30px;
     }
     .list_title {
-      height: 120px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       span {
-        line-height: 120px;
-        font-size: 32px;
+        line-height: 50px;
+        font-size: $font_size_big;
         font-weight: 600;
       }
       .goto_playlist {
         display: inline;
         border: 1px solid #8a8a8a;
-        padding: 10px 20px;
-        font-size: 24px;
+        padding: 4px 8px;
+        font-size: $font_size_middle;
         letter-spacing: 0.5;
         color: $font_color;
         text-align: center;
-        // line-height: 60px;
-        border-radius: 50px;
-      }
-    }
-    .item-box {
-      margin-bottom: 100px;
-      .item {
-        display: inline-block;
-        position: relative;
-        box-sizing: border-box;
-        width: 33.3%;
-        padding-right: 10px;
-        overflow: hidden;
-        .pic {
-          width: 100%;
-          height: 100%;
-          border-radius: 6px;
-        }
-        .text {
-          height: 80px;
-          line-height: 40px;
-          font-size: 22px;
-          color: $font_color;
-          overflow: hidden;
-        }
-        .play-count {
-          position: absolute;
-          top: 10px;
-          right: 20px;
-          height: 26px;
-          display: flex;
-          align-items: center;
-          .play-count-box {
-            font-weight: 500;
-            color: #ffffff;
-            font-size: 20px;
-            height: 100%;
-            .icon {
-              height: 80%;
-            }
-          }
-        }
+        border-radius: 30px;
       }
     }
   }

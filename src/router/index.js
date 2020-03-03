@@ -45,6 +45,11 @@ const PlayList = resolve => {
     resolve(module)
   })
 }
+const User = resolve => {
+  import("../views/User.vue").then( module => {
+    resolve(module)
+  })
+}
 const routes = [{
     //默认跳转到我的
     path: "/",
@@ -79,21 +84,11 @@ const routes = [{
   {
     path:"/playlist",
     component:PlayList
+  },
+  {
+    path:"/user",
+    component:User
   }
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: Home
-  // },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
 ];
 
 const router = new VueRouter({

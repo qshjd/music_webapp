@@ -7,6 +7,11 @@ import 'amfe-flexible'
 
 Vue.config.productionTip = false
 
+import VueLazyLoad from 'vue-lazyload'
+ Vue.use(VueLazyLoad,{
+  loading: require('./imgs/default.jpg')
+ })
+
 new Vue({
   router,
   store,

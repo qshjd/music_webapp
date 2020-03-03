@@ -14,3 +14,7 @@ export const REQUEST_URL_ERROR = 'REQUEST_URL_ERROR'
 export const DELETE_ALL_SEARCH = 'DELETE_ALL_SEARCH'
 //更新存在vuex中的历史纪录
 export const UPDATE_SEARCH = 'UPDATE_SEARCH'
+//更新收藏
+export const UPDATE_LOVE = 'UPDATE_LOVE' 
+//更新最近播放
+export const UPDATE_CURRENT = 'UPDATE_CURRENT' 

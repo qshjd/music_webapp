@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import {saveCurrent} from "../common/cache"
+import {mapMutations} from "vuex"
 export default {
   props: {
     songs: {
@@ -25,7 +27,11 @@ export default {
   },
   components: {},
   methods: {
+    ...mapMutations({updateLove:'UPDATE_LOVE',updateCurrent:"UPDATE_CURRENT"}),
     selectItem(index,item){
+      saveCurrent(item)
+      this.updateLove(item)
+      this.updateCurrent()
       this.$emit('select',index,item)
     }
   },
@@ -34,36 +40,37 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/css/var.scss';
+@import '../assets/css/mixin.scss';
 .song-list {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   .item {
-    font-size: 30px;
-    height: 100px;
+    font-size: $font_size_big;
+    height: 50px;
     border-bottom: 1px solid rgb(228, 228, 228);
     display: flex;
     align-items: center;
-    
     .count{
-        font-size: 28px;
+        font-size: $font_size_middle;
         color:$font_gray;
         width: 10%;
-        padding-left:30px; 
+        padding-left:20px; 
     }
     .content{
         height: 80%;
-        width: 80%;
+        width: 60%;
         .name{
-          font-size: 28px;
+          font-size: $font_size_middle;
           height: 60%;
           color: $font_color;
           overflow: hidden;
-          line-height: 48px;
+          line-height: 24px;
+          @include font-hidden()
         }
         .singer{
-          font-size: 22px;
+          font-size: $font_size_small;
           color: $font_gray;
           height: 40%;
-          line-height: 32px;
+          line-height: 16px;
           letter-spacing: 0.8px;
         }
     }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="spiner-box" :style="topHeight">
+    <div class="spiner-box" >
       <div class="spinner">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
@@ -12,12 +12,6 @@
 
 <script>
 export default {
-  props: {
-    topHeight: {
-      type: String,
-      default: "top:40%"
-    }
-  },
   name: "",
   data() {
     return {};
@@ -36,13 +30,13 @@ export default {
   z-index: 666;
 }
 .spinner {
-  width: 120px;
-  margin-left: -60px;
+  width: 60px;
+  margin-left: -30px;
   text-align: center;
 }
 .spinner > div {
-  width: 24px;
-  height: 24px;
+  width: 12px;
+  height: 12px;
   background-color: #333;
 
   border-radius: 100%;
