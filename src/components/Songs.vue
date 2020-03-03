@@ -71,7 +71,6 @@ export default {
           color: $font_gray;
           height: 40%;
           line-height: 16px;
-          letter-spacing: 0.8px;
         }
     }
   }
