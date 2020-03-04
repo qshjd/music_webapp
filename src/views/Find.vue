@@ -1,39 +1,44 @@
+
+
 <template>
   <div class="mine">
-    <div class="slider" v-if="banner.length">
-      <cube-slide ref="slide" :data="banner">
-        <cube-slide-item
-          v-for="(item, index) in banner"
-          :key="index"
-          @click.native="clickHandler(item, index)"
-        >
-          <img :src="item.imageUrl" class="banner-img">
-        </cube-slide-item>
-      </cube-slide>
-    </div>
-    <div class="icons">
-      <img src="../imgs/recommend.png" class="icon" @click="gotoSuggest">
-      <img src="../imgs/playlist.png" class="icon" @click="gotoPlayList">
-      <img src="../imgs/rank.png" class="icon" @click="gotoRankPage">
-      <img src="../imgs/radio.png" class="icon" @click="gotoSuggest">
-    </div>
-    <div class="icon-des">
-      <span class="des">每日推荐</span>
-      <span class="des">歌单</span>
-      <span class="des">排行榜</span>
-      <span class="des">电台</span>
-    </div>
-    <div class="recommend">
-      <div class="list_title_small">推荐歌单</div>
-      <div class="list_title">
-        <span>为你精挑细选</span>
-        <div class="goto_playlist" @click="gotoPlayList">查看更多</div>
+    <div class="mine-box">
+      <div class="slider" v-if="banner.length">
+        <cube-slide ref="slide" :data="banner">
+          <cube-slide-item
+            v-for="(item, index) in banner"
+            :key="index"
+            @click.native="clickHandler(item, index)"
+          >
+            <img :src="item.imageUrl" class="banner-img">
+          </cube-slide-item>
+        </cube-slide>
       </div>
-      <List :playList="playList" @gotoMusicList="gotoMusicList"/>
+      <div class="icons">
+        <img src="../imgs/recommend.png" class="icon" @click="gotoSuggest">
+        <img src="../imgs/playlist.png" class="icon" @click="gotoPlayList">
+        <img src="../imgs/rank.png" class="icon" @click="gotoRankPage">
+        <img src="../imgs/radio.png" class="icon" @click="gotoSuggest">
+      </div>
+      <div class="icon-des">
+        <span class="des">每日推荐</span>
+        <span class="des">歌单</span>
+        <span class="des">排行榜</span>
+        <span class="des">电台</span>
+      </div>
+      <div class="recommend">
+        <div class="list_title_small">推荐歌单</div>
+        <div class="list_title">
+          <span>为你精挑细选</span>
+          <div class="goto_playlist" @click="gotoPlayList">查看更多</div>
+        </div>
+        <List :playList="playList" @gotoMusicList="gotoMusicList"/>
+      </div>
     </div>
     <transition name="fade">
       <router-view></router-view>
     </transition>
+
   </div>
 </template>
 
@@ -115,13 +120,18 @@ export default {
   opacity: 0;
 }
 .mine {
-  width: 92%;
+  width: 100%;
   position: fixed;
   top: 60px;
   bottom: 0;
-  left: 4%;
-  overflow-x: hidden;
-  overflow-y: auto;
+overflow-x: hidden;
+    overflow-y: auto;
+  .mine-box {
+    width: 92%;
+    left: 4%;
+    position: relative;
+    
+  }
   .slider {
     height: 130px;
     border-radius: 5px;

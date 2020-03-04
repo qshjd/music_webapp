@@ -32,10 +32,10 @@ export default {
 .top-tab {
   width: 100%;
   height: 50px;
-  z-index: -1;
   display: flex;
   font-size: 16px;
   align-items: center;
+  background: #ffffff;
   .tab-item {
     flex: 1;
     text-align: center;

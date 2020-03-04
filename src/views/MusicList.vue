@@ -144,9 +144,9 @@ export default {
 
 .search {
   position: fixed;
-  z-index: 100;
+  z-index: 200;
   width: 100%;
-  top: 0;
+  top: -60px;
   bottom: 0;
   left: 0;
   right: 0;

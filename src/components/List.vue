@@ -1,18 +1,18 @@
 <template>
-    <div>
-        <ul class="item-box">
-            <li class="item" v-for="(item,index) in playList" :key="index">
-                <img v-lazy="item.picUrl" class="pic" @click="gotoMusicList(item)">
-                <p class="text">{{item.name}}</p>
-                <div class="play-count">
-                    <div class="play-count-box">
-                        <img src="../imgs/play.png" class="icon">
-                        {{Math.floor(item.playCount / 10000) }}万
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <div>
+    <ul class="item-box">
+      <li class="item" v-for="(item,index) in playList" :key="index">
+        <img v-lazy="item.picUrl" class="pic" @click="gotoMusicList(item)">
+        <p class="text">{{item.name}}</p>
+        <div class="play-count">
+          <div class="play-count-box">
+            <img src="../imgs/play.png" class="icon">
+            {{Math.floor(item.playCount / 10000) }}万
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -39,16 +39,14 @@ export default {
 @import "../assets/css/var.scss";
 .item-box {
   margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
   .item {
-    display: inline-block;
+    margin-top: 5px;
     position: relative;
-    box-sizing: border-box;
-    width: 33.3%;
-    padding-right: 5px;
-    overflow: hidden;
     .pic {
       width: 100%;
-      height: 100%;
       border-radius: 4px;
     }
     .text {
