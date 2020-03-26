@@ -5,7 +5,7 @@
 通过仿写网易云音乐，基于Vue(2.6)、vue-router、vuex、axios、cubeui、good-storage、vue-lazyload，让自己对vue全家桶的开发更加熟悉，对于组件化思想、代码的规范、ES6的使用上能有提升。
 
 ## 链接
-[项目演示地址](https://www.liaoxuefeng.com/wiki/896043488029600)，或者微信扫二维码👇
+[项目演示地址](http://47.101.189.79/dist/index.html#/find)，或者微信扫二维码👇
 
 <img src="./doc/code.png" width = "200" height = "200" div />
 
